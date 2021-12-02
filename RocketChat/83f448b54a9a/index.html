@@ -1,0 +1,333 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>RocketChat开源聊天应用搭建教程 | 南锅锅のBlog</title><meta name="keywords" content="RocketChat"><meta name="author" content="zounan"><meta name="copyright" content="zounan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="有很多小伙伴都有过搭建一个自己的聊天服务应用的想法，摆脱微信、QQ等第三方应用，更加注重自己的隐私，或更好的存储自己的文件。  我发现了一款开源的聊天应用RocketChat，能够实现群组聊天，直接通信，私聊群，桌面通知，媒体嵌入，链接预览，文件上传，语音&#x2F;视频 聊天，截图等等，还支持实时翻译，实现用户之间的自动实时消息转换，使用RocketChat可以完全控制交流通信。   准备功能听起来还不错">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RocketChat开源聊天应用搭建教程">
+<meta property="og:url" content="https://aoarasi.com/RocketChat/83f448b54a9a/index.html">
+<meta property="og:site_name" content="南锅锅のBlog">
+<meta property="og:description" content="有很多小伙伴都有过搭建一个自己的聊天服务应用的想法，摆脱微信、QQ等第三方应用，更加注重自己的隐私，或更好的存储自己的文件。  我发现了一款开源的聊天应用RocketChat，能够实现群组聊天，直接通信，私聊群，桌面通知，媒体嵌入，链接预览，文件上传，语音&#x2F;视频 聊天，截图等等，还支持实时翻译，实现用户之间的自动实时消息转换，使用RocketChat可以完全控制交流通信。   准备功能听起来还不错">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gwzai4wkrgj31jk0nkwix.jpg">
+<meta property="article:published_time" content="2021-12-02T02:39:29.000Z">
+<meta property="article:modified_time" content="2021-12-02T02:47:49.025Z">
+<meta property="article:author" content="zounan">
+<meta property="article:tag" content="RocketChat">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gwzai4wkrgj31jk0nkwix.jpg"><link rel="shortcut icon" href="https://qny.aoarasi.com/pear.png"><link rel="canonical" href="https://aoarasi.com/RocketChat/83f448b54a9a/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'RocketChat开源聊天应用搭建教程',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-12-02 10:47:49'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><!--加入灯笼--><div class="dengl"><div class="d-box"><div class="d1"><span></span><span><p></p></span><ul><li></li><li> </li><li><span></span></li><li> </li><li> </li></ul></div><div class="d2"><span></span><span><p></p></span><ul><li></li><li> </li><li><span></span></li><li> </li><li> </li></ul></div></div><div class="d-box1"><div class="d1"><span></span><span><p></p></span><ul><li></li><li> </li><li><span></span></li><li> </li><li> </li></ul></div><div class="d2"><span></span><span><p></p></span><ul><li></li><li> </li><li><span></span></li><li> </li><li>  </li></ul></div></div></div><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    document.addEventListener('pjax:complete', detectApple)})(window)</script><link rel="stylesheet" href="/css/lantern.css"><link rel="stylesheet" href="/css/iconfont.css" media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-butterfly-clock/lib/clock.min.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://tva1.sinaimg.cn/large/008i3skNly1gwnocc11pnj30u00u0gme.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/contact/"><i class="fa-fw fab fa-readme"></i><span> 留言板</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://tva1.sinaimg.cn/large/008i3skNly1gwzai4wkrgj31jk0nkwix.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">南锅锅のBlog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/contact/"><i class="fa-fw fab fa-readme"></i><span> 留言板</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">RocketChat开源聊天应用搭建教程</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-12-02T02:39:29.000Z" title="发表于 2021-12-02 10:39:29">2021-12-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-12-02T02:47:49.025Z" title="更新于 2021-12-02 10:47:49">2021-12-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%A5%BD%E7%8E%A9%E7%9A%84%E9%A1%B9%E7%9B%AE/">好玩的项目</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="RocketChat开源聊天应用搭建教程"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>有很多小伙伴都有过搭建一个自己的聊天服务应用的想法，摆脱微信、QQ等第三方应用，更加注重自己的隐私，或更好的存储自己的文件。 </p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gwzai4wkrgj31jk0nkwix.jpg" alt="image"><br>我发现了一款开源的聊天应用RocketChat，能够实现群组聊天，直接通信，私聊群，桌面通知，媒体嵌入，链接预览，文件上传，语音/视频 聊天，截图等等，还支持实时翻译，实现用户之间的自动实时消息转换，使用RocketChat可以完全控制交流通信。  </p>
+<h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1><p>功能听起来还不错，我们一起来搭建一下，我这里使用以下配置：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 基础环境, 我这里用的学生机，大家可以调高一点配置</span></span><br><span class="line">1.CentOS 7.6 1CPU/2G/60G</span><br><span class="line">2.开放公网3000端口</span><br></pre></td></tr></table></figure>
+
+<p>另外需要搭建起docker运行环境，在之前的教程中有讲过使用一键脚本，如果不清楚可以翻看前面的教程。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@mx ~]# docker -v</span><br><span class="line">Docker version 20.10.9, build c2ea9bc</span><br><span class="line">[root@mx ~]# </span><br></pre></td></tr></table></figure>
+
+<h1 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h1><h2 id="部署MongoDB"><a href="#部署MongoDB" class="headerlink" title="部署MongoDB"></a>部署MongoDB</h2><p>首先创建一个自定义网络，用于容器间的相互隔离访问。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 这里我创建一个mynet的网络</span></span><br><span class="line">[root@mx ~]# docker network create --subnet=172.18.0.0/16 mynet</span><br><span class="line">e931682423fb3ce386fe8ccff2d4a1207a49de0f6cbb938290aaf94a680d2e33</span><br><span class="line">[root@mx ~]# docker network ls</span><br><span class="line">NETWORK ID     NAME      DRIVER    SCOPE</span><br><span class="line">a187d39a9c31   bridge    bridge    local</span><br><span class="line">a009b92afbec   host      host      local</span><br><span class="line">e931682423fb   mynet     bridge    local</span><br><span class="line">f7101068a933   none      null      local</span><br><span class="line">[root@mx ~]# </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gwzai7cdn0j311g0a6jsz.jpg" alt="image"></p>
+<p>RocketChat依赖于MongoDB运行环境，先采用Docker方式部署一下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /opt/docker/mongodb</span><br><span class="line"><span class="meta">#</span><span class="bash"> 新建一个配置文件</span></span><br><span class="line">vim /opt/docker/mongodb/mongod.conf</span><br></pre></td></tr></table></figure>
+
+<p>下面是mongod.conf的内容，请粘贴到文件中, 然后使用esc和:x保存退出。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> mongod.conf</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="keyword">for</span> documentation of all options, see:</span></span><br><span class="line"><span class="meta">#</span><span class="bash">   http://docs.mongodb.org/manual/reference/configuration-options/</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Where and how to store data.</span></span><br><span class="line">storage:</span><br><span class="line">  dbPath: /data/db</span><br><span class="line">  journal:</span><br><span class="line">    enabled: true</span><br><span class="line"><span class="meta">#</span><span class="bash">  engine:</span></span><br><span class="line"><span class="meta">#</span><span class="bash">  mmapv1:</span></span><br><span class="line"><span class="meta">#</span><span class="bash">  wiredTiger:</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> network interfaces</span></span><br><span class="line">net:</span><br><span class="line">  port: 27017</span><br><span class="line">  bindIp: 127.0.0.1</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> how the process runs</span></span><br><span class="line">processManagement:</span><br><span class="line">  timeZoneInfo: /usr/share/zoneinfo</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">security:</span></span><br><span class="line"><span class="meta">#</span><span class="bash">  authorization: <span class="string">&quot;enabled&quot;</span></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">operationProfiling:</span></span><br><span class="line"></span><br><span class="line">replication:</span><br><span class="line">  replSetName: &quot;rs01&quot;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">sharding:</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># Enterprise-Only Options:</span></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">auditLog:</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">snmp:</span></span><br></pre></td></tr></table></figure>
+
+<p>使用以下命令创建运行镜像。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">docker run \</span><br><span class="line">-itd \</span><br><span class="line">-e PGID=1000 \</span><br><span class="line">-e PUID=1000 \</span><br><span class="line">--name=MongoDB \</span><br><span class="line">--net=mynet \</span><br><span class="line">--ip=172.18.0.2 \</span><br><span class="line">-e TZ=Asia/Shanghai \</span><br><span class="line">-p 27017:27017/tcp \</span><br><span class="line">-v /opt/docker/mongodb/:/data/db:rw \</span><br><span class="line">--hostname mongodatabase mongo \</span><br><span class="line">-f /data/db/mongod.conf</span><br></pre></td></tr></table></figure>
+
+<p>由于docker的镜像服务器在国外，所以下载较慢，如果遇到以下类似的错误，请多试几遍。<br><img src="https://tva1.sinaimg.cn/large/008i3skNly1gwzai6rz1wj31sd0u0jy0.jpg" alt="image"><br>使用命令查看运行状态，如果没有其它报错则安装正常。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看正在运行的容器</span></span><br><span class="line">docker ps </span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gwzai5c6gvj31ue0oy43u.jpg" alt="image"></p>
+<h2 id="配置MongoDB"><a href="#配置MongoDB" class="headerlink" title="配置MongoDB"></a>配置MongoDB</h2><p>我们需要对MongoDB进行一系列的配置。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 进入到容器内部</span></span><br><span class="line">[root@mx ~]# docker exec -it MongoDB bash</span><br><span class="line">root@mongodatabase:/# </span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 容器内部进入mongodb</span></span><br><span class="line">root@mongodatabase:/# mongo</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 使用以下命令，注意括号</span></span><br><span class="line">mongodatabase:SECONDARY&gt; rs.initiate()</span><br><span class="line">&#123;</span><br><span class="line">        &quot;ok&quot; : 0,</span><br><span class="line">        &quot;errmsg&quot; : &quot;already initialized&quot;,</span><br><span class="line">        &quot;code&quot; : 23,</span><br><span class="line">        &quot;codeName&quot; : &quot;AlreadyInitialized&quot;,</span><br><span class="line">        &quot;$clusterTime&quot; : &#123;</span><br><span class="line">                &quot;clusterTime&quot; : Timestamp(1635072585, 2),</span><br><span class="line">                &quot;signature&quot; : &#123;</span><br><span class="line">                        &quot;hash&quot; : BinData(0,&quot;AAAAAAAAAAAAAAAAAAAAAAAAAAA=&quot;),</span><br><span class="line">                        &quot;keyId&quot; : NumberLong(0)</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;operationTime&quot; : Timestamp(1635072585, 2)</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 使用管理员操作数据库</span></span><br><span class="line">mongodatabase:PRIMARY&gt; use admin</span><br><span class="line">switched to db admin</span><br><span class="line">mongodatabase:PRIMARY&gt; </span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 创建管理员和rocketchat数据库, 这里我把密码都修改为admin123，大家可对应修改</span></span><br><span class="line">db.createUser(&#123;user: &quot;root&quot;,pwd: &quot;admin123&quot;,roles: [&#123; role: &quot;root&quot;, db: &quot;admin&quot;&#125;]&#125;)</span><br><span class="line">db.createUser(&#123;user: &quot;rocketchat&quot;,pwd: &quot;admin123&quot;,roles: [&#123;role: &quot;readWrite&quot;, db: &quot;local&quot; &#125;]&#125;)</span><br><span class="line"><span class="meta">#</span><span class="bash"> 切换用户</span></span><br><span class="line">use rocketchat</span><br><span class="line">db.createUser(&#123;user: &quot;rocketchat&quot;,pwd: &quot;admin123&quot;,roles: [&#123;role: &quot;dbOwner&quot;,db: &quot;rocketchat&quot; &#125;]&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>如果你的操作结果与我类似，那么恭喜你创建成功。<br><img src="https://tva1.sinaimg.cn/large/008i3skNly1gwzai417amj31pa0qiad1.jpg" alt="image"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 退出</span><br><span class="line">exit</span><br><span class="line">openssl rand -base64 90 &gt; /data/db/mongo.keyfile &amp;&amp; chmod 400 /data/db/mongo.keyfile</span><br><span class="line">exit</span><br></pre></td></tr></table></figure>
+
+<p>使用exit退出mongodb和容器，我们修改一个配置。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker stop MongoDB</span><br><span class="line">vim /opt/docker/mongodb/mongod.conf </span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gwzai3mul7j31r30u0whv.jpg" alt="image"><br>将24-25行前的注释取消掉，并添加为下面的样子,保存后重启mongodb。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">security:</span><br><span class="line">  keyFile: /data/db/mongo.keyfile</span><br><span class="line">  authorization: &quot;enabled&quot;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 重启</span></span><br><span class="line">docker start MongoDB</span><br></pre></td></tr></table></figure>
+
+<h1 id="部署RocketChat"><a href="#部署RocketChat" class="headerlink" title="部署RocketChat"></a>部署RocketChat</h1><p>使用下面的命令部署镜像，如果下载较慢或超时可以多试几次。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">docker run \</span><br><span class="line">-itd \</span><br><span class="line">-e PGID=1000 \</span><br><span class="line">-e PUID=1000 \</span><br><span class="line">--name=RocketChat \</span><br><span class="line">--net=mynet \</span><br><span class="line">--ip=172.18.0.3 \</span><br><span class="line">-e TZ=Asia/Shanghai \</span><br><span class="line">-e MONGO_URL=mongodb://rocketchat:admin123@172.18.0.2:27017/rocketchat \</span><br><span class="line">-e MONGO_OPLOG_URL=mongodb://rocketchat:admin123@172.18.0.2:27017/local?authSource=admin \</span><br><span class="line">-p 3000:3000/tcp \</span><br><span class="line">-v /opt/docker/rocketchat:/app/uploads:rw library/rocket.chat:4.0.3</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gwzai83t3ij31v80ew42n.jpg" alt="image"><br>关闭防火墙，或放行3000TCP端口，使用网页来访问，地址为IP:3000(如果你是公网服务器，请使用你的公网地址)。配置一下基本信息，一直继续到配置结束。<br><img src="https://tva1.sinaimg.cn/large/008i3skNly1gwzai64vezj31gl0u0q5j.jpg" alt="image"><br><img src="https://tva1.sinaimg.cn/large/008i3skNly1gwzai7oqbtj31jk0qzwh2.jpg" alt="image"><br><img src="https://tva1.sinaimg.cn/large/008i3skNly1gwzai8mlnej31jk0rpmyh.jpg" alt="image"><br>最后就可以愉快地玩耍了，发个表情试试~  </p>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>安装成功后，可以使用ssl证书将网站加密，可以更加的安全。而且使用客户端连接到私有服务器时，http协议不会被连接。<br><img src="https://tva1.sinaimg.cn/large/008i3skNly1gwzai4hmlij30u01cqgnf.jpg" alt="image"><br>如果你安装时遇到有问题，无法继续下去，可以私信联系我获得帮助（可提供shell一键脚本)。<br>客户端获取请回复关键字「111」。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">zounan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://aoarasi.com/RocketChat/83f448b54a9a/">https://aoarasi.com/RocketChat/83f448b54a9a/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://aoarasi.com" target="_blank">南锅锅のBlog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/RocketChat/">RocketChat</a></div><div class="post_share"><div class="social-share" data-image="https://tva1.sinaimg.cn/large/008i3skNly1gwzai4wkrgj31jk0nkwix.jpg" data-sites="wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/ArchLinux1/c132d211f4bd/"><img class="next-cover" src="https://tva1.sinaimg.cn/large/008i3skNly1gww1eorridj31hc0u00wn.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">由吉他手开发的Linux发行版？ Arch Linux最新上手安装教程（图文）</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://tva1.sinaimg.cn/large/008i3skNly1gwnocc11pnj30u00u0gme.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">zounan</div><div class="author-info__description">90后运维老司机，折腾服务器软硬件、树莓派和软路由等，目前正在学习云计算、大数据等前沿技术</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://qm.qq.com/cgi-bin/qm/qr?k=q1ddTvI5NGojqQ_urpkpe_P0c6jPeaTO&amp;jump_from=webapi" target="_blank" title="QQ"><i class="iconfont icon-QQ"></i></a><a class="social-icon" href="https://www.zhihu.com/people/zou-nan-60" target="_blank" title="知乎"><i class="iconfont icon-shejiaotubiao-10"></i></a><a class="social-icon" href="mailto:aoarasi@88com" target="_blank" title="Email"><i class="iconfont icon-mail"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">本站永久快捷域名：<a target="_blank" rel="noopener" href="http://aaa.al" style="color:red">aaa.al</a></br> 关注本站公众号，订阅技术资讯 <i id="heartbeat" class="fa fas fa-heartbeat"></i>  <img src="https://qny.aoarasi.com/gzh.jpg"></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%86%E5%A4%87"><span class="toc-number">1.</span> <span class="toc-text">准备</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2"><span class="toc-number">2.</span> <span class="toc-text">部署</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2MongoDB"><span class="toc-number">2.1.</span> <span class="toc-text">部署MongoDB</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEMongoDB"><span class="toc-number">2.2.</span> <span class="toc-text">配置MongoDB</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2RocketChat"><span class="toc-number">3.</span> <span class="toc-text">部署RocketChat</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-number">4.</span> <span class="toc-text">结语</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/RocketChat/83f448b54a9a/" title="RocketChat开源聊天应用搭建教程"><img src="https://tva1.sinaimg.cn/large/008i3skNly1gwzai4wkrgj31jk0nkwix.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="RocketChat开源聊天应用搭建教程"/></a><div class="content"><a class="title" href="/RocketChat/83f448b54a9a/" title="RocketChat开源聊天应用搭建教程">RocketChat开源聊天应用搭建教程</a><time datetime="2021-12-02T02:39:29.000Z" title="发表于 2021-12-02 10:39:29">2021-12-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/ArchLinux1/c132d211f4bd/" title="由吉他手开发的Linux发行版？ Arch Linux最新上手安装教程（图文）"><img src="https://tva1.sinaimg.cn/large/008i3skNly1gww1eorridj31hc0u00wn.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="由吉他手开发的Linux发行版？ Arch Linux最新上手安装教程（图文）"/></a><div class="content"><a class="title" href="/ArchLinux1/c132d211f4bd/" title="由吉他手开发的Linux发行版？ Arch Linux最新上手安装教程（图文）">由吉他手开发的Linux发行版？ Arch Linux最新上手安装教程（图文）</a><time datetime="2021-11-29T07:04:22.000Z" title="发表于 2021-11-29 15:04:22">2021-11-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/shell002/d5cbd103d1c0/" title="连shell的基本输出都不会，还写什么脚本？echo和printf命令总结"><img src="https://tva1.sinaimg.cn/large/008i3skNly1gwunfuilhfj31hc0u0dl8.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="连shell的基本输出都不会，还写什么脚本？echo和printf命令总结"/></a><div class="content"><a class="title" href="/shell002/d5cbd103d1c0/" title="连shell的基本输出都不会，还写什么脚本？echo和printf命令总结">连shell的基本输出都不会，还写什么脚本？echo和printf命令总结</a><time datetime="2021-11-28T02:19:16.000Z" title="发表于 2021-11-28 10:19:16">2021-11-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/shell001/d585266bb763/" title="Linux文件分发脚本，只需一条命令将你的文件分发到各个服务器上"><img src="/shell001/d585266bb763/cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux文件分发脚本，只需一条命令将你的文件分发到各个服务器上"/></a><div class="content"><a class="title" href="/shell001/d585266bb763/" title="Linux文件分发脚本，只需一条命令将你的文件分发到各个服务器上">Linux文件分发脚本，只需一条命令将你的文件分发到各个服务器上</a><time datetime="2021-11-27T03:37:04.000Z" title="发表于 2021-11-27 11:37:04">2021-11-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/shellscript1/1108d700c78c/" title="用这个脚本实现Linux下的备份与增量同步"><img src="https://www.hualigs.cn/image/61a1c7fa392f5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="用这个脚本实现Linux下的备份与增量同步"/></a><div class="content"><a class="title" href="/shellscript1/1108d700c78c/" title="用这个脚本实现Linux下的备份与增量同步">用这个脚本实现Linux下的备份与增量同步</a><time datetime="2021-11-26T08:58:02.000Z" title="发表于 2021-11-26 16:58:02">2021-11-26</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://tva1.sinaimg.cn/large/008i3skNly1gwzai4wkrgj31jk0nkwix.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020-2021  <i id="heartbeat" class="fa fas fa-heartbeat"></i> zounan</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn"><img class="icp-icon" src="https://cdn.jsdelivr.net/gh/bynotes/bynotes.github.io@master/img/micp.png"><span>备案号：蜀ICP备2021011542号</span></a><br/><a style="margin-inline:5px"target="_blank" href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为 Hexo" alt="HEXO"></a><a style="margin-inline:5px"target="_blank" href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用 Butterfly" alt="Butterfly"></a>  <a style="margin-inline:5px"target="_blank" href="https://www.jsdelivr.com/"><img src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用 Jsdelivr 为静态资源提供CDN加速" alt="Jsdelivr"></a><a style="margin-inline:5px"target="_blank" href="https://github.com/"><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由 GitHub 托管" alt="GitHub"></a><a style="margin-inline:5px"target="_blank"href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" alt="img" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p><link rel="stylesheet" href="/css/heartbeat.min.css"></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'kk0otxTvdkHCe0SvMJAO6t8I-gzGzoHsz',
+      appKey: 'zVFCfffhBFBvDNeTyPYY0A9G',
+      placeholder: '悄悄告诉你，在昵称处填入qq号会自动补齐邮箱哦~',
+      avatar: 'robohash',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: true,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: true,
+      path: window.location.pathname,
+      requiredFields: ["mail"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script data-pjax defer src="https://code.jquery.com/jquery.min.js"></script><script data-pjax defer src="/js/chocolate.js"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-show-text.min.js" data-mobile="false" data-text="I,LOVE,YOU" data-fontsize="15px" data-random="true" async="async"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.removeEventListener('scroll', window.tocScrollFn)
+  window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_clock_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src="https://cdn.jsdelivr.net/gh/tzy13755126023/BLOG_SOURCE/theme_f/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_injector_config();
+  }
+  </script><script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><script data-pjax src="https://cdn.jsdelivr.net/npm/hexo-butterfly-clock/lib/clock.min.js"></script><!-- hexo injector body_end end --></body></html>
